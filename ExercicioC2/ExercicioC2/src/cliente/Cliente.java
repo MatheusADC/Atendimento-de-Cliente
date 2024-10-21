@@ -1,7 +1,6 @@
 package cliente;
 
 public class Cliente {
-	
 	private static int senhaDeAtendimento = 0;
 	private static int geradorDeSenha = 1;
 	
