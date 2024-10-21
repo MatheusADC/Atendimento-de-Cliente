@@ -39,73 +39,70 @@ public class UsaCliente {
 	}
 
 	private static void mostrarNaoAtendidos(ArrayList<Cliente> clientes) {
-		if (clientes.isEmpty()) {
-			InOut.msgDeAviso("Clientes Nao Atendidos", "Nao existem clientes nao atendidos!");
-			return;
-		}
+	    if (clientes.isEmpty()) {
+	        InOut.msgDeAviso("Clientes Nao Atendidos", "Nao existem clientes nao atendidos!");
+	    } else {
+	        StringBuilder mensagem = new StringBuilder("Clientes nao atendidos:\n");
 
-		StringBuilder mensagem = new StringBuilder("Clientes nao atendidos:\n");
+	        for (Cliente cliente : clientes) {
+	            mensagem.append("Senha: ").append(cliente.getSenhaDoCliente()).append("\n");
+	        }
 
-		for (Cliente cliente : clientes) {
-			mensagem.append("Senha: ").append(cliente.getSenhaDoCliente()).append("\n");
-		}
-
-		InOut.msgDeInformacao("Clientes Nao Atendidos", mensagem.toString());
+	        InOut.msgDeInformacao("Clientes Nao Atendidos", mensagem.toString());
+	    }
 	}
 
 	private static void sairDaFila(ArrayList<Cliente> clientes) {
-		if (clientes.isEmpty()) {
-			InOut.msgDeAviso("Sair da Fila", "Nao existem clientes na fila!");
-			return;
-		}
+	    if (clientes.isEmpty()) {
+	        InOut.msgDeAviso("Sair da Fila", "Nao existem clientes na fila!");
+	    } else {
+	        int senhaDigitada = InOut.leInt("Digite a sua senha: ");
+	        Cliente clienteSairFila = null;
 
-		int senhaDigitada = InOut.leInt("Digite a sua senha: ");
+	        for (Cliente cliente : clientes) {
+	            if (cliente.getSenhaDoCliente() == senhaDigitada) {
+	                clienteSairFila = cliente;
+	                break;
+	            }
+	        }
 
-		Cliente clienteSairFila = null;
-		for (Cliente cliente : clientes) {
-			if (cliente.getSenhaDoCliente() ==  senhaDigitada) {
-				clienteSairFila = cliente;
-				break;
-			}
-		}
-
-		if (clienteSairFila != null) {
-			clientes.remove(clienteSairFila);
-			InOut.msgDeInformacao("Sair da Fila", "Cliente com senha " +  senhaDigitada + " foi removido da fila com sucesso!");
-		} else {
-			InOut.msgDeAviso("Sair da Fila", "Senha " +  senhaDigitada + " nao encontrada!");
-		}
+	        if (clienteSairFila != null) {
+	            clientes.remove(clienteSairFila);
+	            InOut.msgDeInformacao("Sair da Fila", "Cliente com senha " + senhaDigitada + " foi removido da fila com sucesso!");
+	        } else {
+	            InOut.msgDeAviso("Sair da Fila", "Senha " + senhaDigitada + " nao encontrada!");
+	        }
+	    }
 	}
 
 	private static void atendimento(ArrayList<Cliente> clientes) {
-		if (clientes.isEmpty()) {
-			InOut.msgDeAviso("Atendimento", "Nao existem clientes para receber atendimento!");
-			return;
-		}
+	    if (clientes.isEmpty()) {
+	        InOut.msgDeAviso("Atendimento", "Nao existem clientes para receber atendimento!");
+	    } else {
+	        StringBuilder mensagem = new StringBuilder("Lista para atendimento:\n");
 
-		StringBuilder mensagem = new StringBuilder("Lista para atendimento:\n");
+	        while (!clientes.isEmpty()) {
+	            int senhaSeguinte = Cliente.proximo();
+	            Cliente clienteAtendimento = null;
 
-		while (!clientes.isEmpty()) {
-			int senhaSeguinte = Cliente.proximo();
+	            for (Cliente cliente : clientes) {
+	                if (cliente.getSenhaDoCliente() == senhaSeguinte) {
+	                    clienteAtendimento = cliente;
+	                    break;
+	                }
+	            }
 
-			Cliente clienteAtendimento = null;
-			for (Cliente cliente : clientes) {
-				if (cliente.getSenhaDoCliente() == senhaSeguinte) {
-					clienteAtendimento = cliente;
-					break;
-				}
-			}
+	            if (clienteAtendimento != null) {
+	                mensagem.append("Cliente: ").append(clienteAtendimento.getNome())
+	                        .append("\nSenha: ").append(clienteAtendimento.getSenhaDoCliente()).append("\n\n");
+	                clientes.remove(clienteAtendimento);
+	            } else {
+	                mensagem.append("O cliente para a senha ").append(senhaSeguinte).append(" nao foi encontrado!\n\n");
+	            }
+	        }
 
-			if (clienteAtendimento != null) {
-				mensagem.append("Cliente: ").append(clienteAtendimento.getNome())
-				.append("\nSenha: ").append(clienteAtendimento.getSenhaDoCliente()).append("\n\n");
-				clientes.remove(clienteAtendimento);
-			} else {
-				mensagem.append("O cliente para a senha ").append(senhaSeguinte).append("nao foi encontrado!\n\n");
-			}
-		}
-
-		InOut.msgDeInformacao("Atendimento", mensagem.toString());
+	        InOut.msgDeInformacao("Atendimento", mensagem.toString());
+	    }
 	}
 
 	private static void gerarSenha(ArrayList<Cliente> clientes) {
