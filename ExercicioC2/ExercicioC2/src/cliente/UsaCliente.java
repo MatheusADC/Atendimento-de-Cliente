@@ -75,11 +75,10 @@ public class UsaCliente {
 	    }
 	}
 
-	private static void atendimento(ArrayList<Cliente> clientes) {
+private static void atendimento(ArrayList<Cliente> clientes) {
 	    if (clientes.isEmpty()) {
 	        InOut.msgDeAviso("Atendimento", "Nao existem clientes para receber atendimento!");
 	    } else {
-	        StringBuilder mensagem = new StringBuilder("Lista para atendimento:\n");
 
 	        while (!clientes.isEmpty()) {
 	            int senhaSeguinte = Cliente.proximo();
@@ -88,20 +87,24 @@ public class UsaCliente {
 	            for (Cliente cliente : clientes) {
 	                if (cliente.getSenhaDoCliente() == senhaSeguinte) {
 	                    clienteAtendimento = cliente;
-	                    break;
+	                    break; // Sair do for
 	                }
 	            }
 
 	            if (clienteAtendimento != null) {
-	                mensagem.append("Cliente: ").append(clienteAtendimento.getNome())
-	                        .append("\nSenha: ").append(clienteAtendimento.getSenhaDoCliente()).append("\n\n");
-	                clientes.remove(clienteAtendimento);
-	            } else {
-	                mensagem.append("O cliente para a senha ").append(senhaSeguinte).append(" nao foi encontrado!\n\n");
+	                int Finalizacao = 0;
+	                while( Finalizacao != 1) {
+	                InOut.msgDeInformacao("Atendimento", "O próximo Cliente é: " + clienteAtendimento.getNome() + " de senha " + clienteAtendimento.getSenhaDoCliente());
+	            	Finalizacao = InOut.leInt("O cliente " + clienteAtendimento.getNome() + " de senha " + clienteAtendimento.getSenhaDoCliente() + " foi atendido corretamente? \n 0. Não \n 1. Sim" );
+	            	clientes.remove(clienteAtendimento);
+	                }
+	                break; // Sair do while final
+	            } else { 
+	            	InOut.msgDeAviso("Atendimento", "Não foi encontrado o Cliente de senha " + senhaSeguinte);
 	            }
 	        }
 
-	        InOut.msgDeInformacao("Atendimento", mensagem.toString());
+	        InOut.msgDeInformacao("Atendimento", " Atendimento realizado finalizado. " );
 	    }
 	}
 
