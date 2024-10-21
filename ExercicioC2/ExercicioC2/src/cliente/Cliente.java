@@ -1,16 +1,13 @@
 package cliente;
 
 public class Cliente {
-	// Atributos de Instância
-		private static int senhaDeAtendimento = 0;
-		private static int geradorDeSenha = 1;
-		
-	// Atributos de Classe
+	
+	private static int senhaDeAtendimento = 0;
+	private static int geradorDeSenha = 1;
+	
 	private int senhaDoCliente ;
 	private String nome;
 
-	// Construtor
-	// Remover senhaDoCliente
 	public Cliente(String nome) {
 		super();
 		this.senhaDoCliente = geradorDeSenha;
@@ -35,7 +32,6 @@ public class Cliente {
 	}
 	
 	
-	// Deve ser static?
 	public static int proximo() {
 		senhaDeAtendimento++;
 		return senhaDeAtendimento;
