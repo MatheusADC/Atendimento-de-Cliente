@@ -1,10 +1,10 @@
-# <img src="https://github.com/user-attachments/assets/caabfdf0-0f9e-44a3-8200-c6579fe87887" alt="speech bubble" width="28"> Descrição
+# <img src="https://github.com/user-attachments/assets/caabfdf0-0f9e-44a3-8200-c6579fe87887" alt="ícone de descrição" width="28"> Descrição
 O Programa tem como fito o gerenciamento de um fila de atendimento de clientes, utilizando a linguagem de programação Java.
 
-# <img src="https://github.com/user-attachments/assets/bbcdf893-ff78-464c-a248-75fc69288bf4" alt="Menu" width="28"> Tela do Menu
+# <img src="https://github.com/user-attachments/assets/bbcdf893-ff78-464c-a248-75fc69288bf4" alt="ícone de menu" width="28"> Tela do Menu
 ![image](https://github.com/user-attachments/assets/eb6b269c-333b-4a8f-bf10-b320e7bcbd46)
 
-# <img src="https://github.com/user-attachments/assets/bcc13508-9dd5-494a-aee7-797736c6bf4c" alt="java icon" width="28"> Funcionalidades
+# <img src="https://github.com/user-attachments/assets/bcc13508-9dd5-494a-aee7-797736c6bf4c" alt="ícone do java" width="28"> Funcionalidades
 
 ## 1) Gerar senha
 Solicita ao usuário seu nome, instancia o objeto **Cliente** e o coloca no ArrayList mostrando na tela o nome do usuário e a sua senha.
